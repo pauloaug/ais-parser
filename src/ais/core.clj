@@ -112,7 +112,8 @@
         [message-id repeat-indicator user-id nav-status rate-of-turn
          sog pos longitude latitude cog true-heading timestamp
          special-manoevre spare raim-flag comm-state] parameters]        
-   (list (bin-to-dec message-id)
+   (list 
+    (bin-to-dec message-id)
     (bin-to-dec repeat-indicator)
     (bin-to-dec user-id)
     (bin-to-navigational-status nav-status)
@@ -130,6 +131,8 @@
     (bin-to-dec comm-state))))
 
 (pprint (decode-message1 exemplo))
+
+
 
   ;; (map (fn [x y] ((resolve x) y)) 
   ;;     (decoders-message1) 
@@ -174,18 +177,17 @@
   [x]
   (let [latitude (bin-to-latlong x)]
     (cond (= (int latitude) 91) {:info "not available"}
-          (<= 0 latitude 90) {:value latitude})))
+          (<= -90 latitude 90) {:value latitude})))
 
 (defn bin-to-longitude
   [x]
   (let [longitude (bin-to-latlong x)]
     (cond (= (int longitude) 181) {:info "not available"}
-          (<= 0 longitude 180) {:value longitude})))
+          (<= -180 longitude 180) {:value longitude})))
 
 ;;teste
-(bin-to-longitude (str "0" 
-                      (Integer/toString (* 181 600000) 2)))
-
+(bin-to-longitude (Integer/toString (* 162 600000) 2))
+(bin-to-longitude (nth substrings01 7))
 
 (defn rate-of-turn
   [x]
