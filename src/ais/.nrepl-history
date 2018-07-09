@@ -1,0 +1,9 @@
+exemplo
+(+ 1 1)
+(println "aaaaa")
+(doc doc)
+(doc repeat)
+(apropos aprop)
+(repeat 3 2)
+(repeat 10 (println 2))
+(repeat 10 (str 2))
