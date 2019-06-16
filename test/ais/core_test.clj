@@ -4,7 +4,7 @@
 
 (deftest a-test
   (testing "FIXME, I fail."
-    (is (= 0 0))))
+    (is (= 0 9))))
 
 (deftest dois-mais-dois (is (= 4 (+ 2 2))))
 
